@@ -26,22 +26,22 @@ mongoose.connect(mongoURI, {
 const app = express();
 
 // Middleware
-const corsOptions = {
-  origin: 'https://frontend-final-mu.vercel.app',  // Frontend URL
-  methods: 'GET, POST, PUT, PATCH, DELETE',
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true  // Allow credentials (cookies) to be sent
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'https://frontend-final-mu.vercel.app',  // Frontend URL
+//   methods: 'GET, POST, PUT, PATCH, DELETE',
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true  // Allow credentials (cookies) to be sent
+// };
+// app.use(cors(corsOptions));
 
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://frontend-final-mu.vercel.app');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true'); 
-//   next();
-// })
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://frontend-final-mu.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); 
+  next();
+})
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
